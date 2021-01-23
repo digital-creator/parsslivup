@@ -1,10 +1,13 @@
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from time import sleep
 from func.request import find_element, results_count, parse_page, page_next
 from func.write_data import write_file
 
 def parsing(link, wait, search, rows):
-    with webdriver.Firefox(timeout=15) as driver:
+    options = Options()
+    options.headless = True
+    with webdriver.Firefox(timeout=15, options = options) as driver:
         driver.implicitly_wait(wait)
         driver.get(link)
         sleep(wait)
